@@ -24,7 +24,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "listing")
+@Table(name = "booking")
 public class Booking  extends AbstractAuditingEntity<Long> {
 
     @Id

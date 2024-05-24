@@ -1,5 +1,8 @@
 package com.airbnb.clone.server.user.mapper;
 
+import com.airbnb.clone.server.user.application.dto.ReadUserDTO;
+import com.airbnb.clone.server.user.domain.Authority;
+import com.airbnb.clone.server.user.domain.User;
 import org.mapstruct.Mapper;
 
 /**
@@ -11,4 +14,9 @@ import org.mapstruct.Mapper;
  **/
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+    ReadUserDTO readUserDTOToUser(User user);
+
+    default String mapAuthoritiesToString(Authority authority) {
+        return authority.getName();
+    }
 }
