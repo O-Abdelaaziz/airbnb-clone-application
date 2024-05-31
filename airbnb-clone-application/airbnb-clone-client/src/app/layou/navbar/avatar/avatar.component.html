@@ -1,7 +1,12 @@
 <div class="flex align-content-center">
   @if (avatarUrl() != null) {
-    <img ngSrc="{{avatarUrl()}}" alt="user-avatar" class="border-round-3xl avatar"
-         [ngClass]="avatarSize()" fill>
+    <p-avatar
+      image="{{avatarUrl()}}"
+      styleClass="mr-2"
+      size="normal"
+      shape="circle" [ngClass]="avatarSize()" />
+<!--    <img ngSrc="{{avatarUrl()}}" alt="user-avatar" class="border-round-3xl avatar"-->
+<!--         [ngClass]="avatarSize()" fill>-->
   } @else {
     <div class="flex align-items-center justify-content-center unknown-user"
          [ngClass]="avatarSize()">
