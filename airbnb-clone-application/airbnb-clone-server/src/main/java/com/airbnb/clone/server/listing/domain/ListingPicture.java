@@ -2,6 +2,8 @@ package com.airbnb.clone.server.listing.domain;
 
 import com.airbnb.clone.server.sharedkernel.domain.AbstractAuditingEntity;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -13,6 +15,8 @@ import java.util.Objects;
  * @User mrabdelaaziz
  * @Author Abdelaaziz Ouakala
  **/
+@Getter
+@Setter
 @Entity
 @Table(name = "listing_picture")
 public class ListingPicture extends AbstractAuditingEntity<Long> {
