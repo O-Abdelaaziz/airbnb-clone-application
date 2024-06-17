@@ -2,6 +2,7 @@ package com.airbnb.clone.server.listing.application;
 
 import com.airbnb.clone.server.listing.application.dto.CreatedListingDTO;
 import com.airbnb.clone.server.listing.application.dto.DisplayCardListingDTO;
+import com.airbnb.clone.server.listing.application.dto.ListingCreateBookingDTO;
 import com.airbnb.clone.server.listing.application.dto.SaveListingDTO;
 import com.airbnb.clone.server.listing.domain.Listing;
 import com.airbnb.clone.server.listing.mapper.ListingMapper;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -62,6 +64,10 @@ public class LandlordService {
         return listingMapper.listingToDisplayCardListingDTOs(properties);
     }
 
+    public Optional<ListingCreateBookingDTO> getByListingPublicId(UUID publicId) {
+        return listingRepository.findByPublicId(publicId).map(listingMapper::mapListingToListingCreateBookingDTO);
+    }
+
     @Transactional
     public State<UUID, String> delete(UUID publicId, ReadUserDTO landlord) {
         long deletedSuccessfuly = listingRepository.deleteByPublicIdAndLandlordPublicId(publicId, landlord.publicId());
@@ -70,6 +76,19 @@ public class LandlordService {
         } else {
             return State.<UUID, String>builder().forUnauthorized("User not authorized to delete this listing");
         }
+    }
+
+    public List<DisplayCardListingDTO> getCardDisplayByListingPublicId(List<UUID> allListingPublicIDs) {
+        return listingRepository.findAllByPublicIdIn(allListingPublicIDs)
+                .stream()
+                .map(listingMapper::listingToDisplayCardListingDTO)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<DisplayCardListingDTO> getByPublicIdAndLandlordPublicId(UUID listingPublicId, UUID landlordPublicId) {
+        return listingRepository.findOneByPublicIdAndLandlordPublicId(listingPublicId, landlordPublicId)
+                .map(listingMapper::listingToDisplayCardListingDTO);
     }
 
 }

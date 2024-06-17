@@ -10,6 +10,7 @@ import {ToastService} from "../../services/toast.service";
 import {CategoryService} from "../../services/category.service";
 import {CountryService} from "../../landlord/properties-create/steps/location-step/country.service";
 import {Category} from "../../modals/category";
+import {BookDateComponent} from "../book-date/book-date.component";
 
 @Component({
   selector: 'app-display-listing',
@@ -18,6 +19,7 @@ import {Category} from "../../modals/category";
     NgClass,
     FaIconComponent,
     AvatarComponent,
+    BookDateComponent,
   ],
   templateUrl: './display-listing.component.html',
   styleUrl: './display-listing.component.scss'

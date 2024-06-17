@@ -24,6 +24,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "dayjs": "^1.11.11",
     "leaflet": "^1.9.4",
     "leaflet-geosearch": "^4.0.0",
     "primeflex": "^3.3.1",
